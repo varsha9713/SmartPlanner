@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.chan24.smartplanner.LoginActivity">
+    tools:context="com.example.chan24.smartplanner.RegisterActivity">
 
     <EditText
         android:layout_width="wrap_content"
@@ -17,8 +17,8 @@
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
-        android:id="@+id/name"
+        android:layout_marginTop="48dp"
+        android:id="@+id/user"
         android:hint="Username" />
 
     <EditText
@@ -26,28 +26,28 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/name"
-        android:layout_alignEnd="@+id/name"
-        android:layout_marginTop="52dp"
-        android:id="@+id/password"
+        android:layout_below="@+id/user"
+        android:layout_alignEnd="@+id/user"
+        android:layout_marginTop="46dp"
+        android:id="@+id/pass"
         android:hint="Password" />
 
-    <Button
-        android:text="login"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:id="@+id/login" />
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/pass"
+        android:id="@+id/editText3"
+        android:hint="Email" />
 
-    <TextView
-        android:text="Not a member ? Register now!"
+    <Button
+        android:text="sign up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
+        android:layout_below="@+id/editText3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
-        android:id="@+id/reg"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="50dp"
+        android:id="@+id/button" />
 </RelativeLayout>
