@@ -11,7 +11,12 @@
     tools:context="com.example.chan24.smartplanner.LoginActivity">
 
     <TextView
+        android:text="Pickho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="84dp"
+        android:id="@+id/text" />
 </RelativeLayout>
