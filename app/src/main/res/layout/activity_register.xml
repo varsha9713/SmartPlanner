@@ -39,15 +39,15 @@
         android:ems="10"
         android:layout_centerVertical="true"
         android:layout_alignEnd="@+id/pass"
-        android:id="@+id/editText3"
+        android:id="@+id/mail"
         android:hint="Email" />
 
     <Button
         android:text="sign up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/mail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:id="@+id/button" />
+        android:id="@+id/signup" />
 </RelativeLayout>
