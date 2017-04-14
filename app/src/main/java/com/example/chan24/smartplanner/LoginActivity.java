@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,6 +28,14 @@ public class LoginActivity extends AppCompatActivity {
                 Intent regintent = new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(regintent);
 
+            }
+        });
+        Button b =(Button)findViewById(R.id.button2);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getApplicationContext(),UserArea.class);
+                startActivity(i);
             }
         });
     }
