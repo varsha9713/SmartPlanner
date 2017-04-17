@@ -65,16 +65,6 @@ public class UserArea extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        Button b= (Button)findViewById(R.id.button3);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(),MapsActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
