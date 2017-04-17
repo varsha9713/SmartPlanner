@@ -2,6 +2,7 @@ package com.example.chan24.smartplanner;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -47,6 +48,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         else
             return true;
+
+    }
+    Cursor retriving()
+    {
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor c =db.rawQuery("select * from "+tablename,null);
+        return c;
 
     }
 

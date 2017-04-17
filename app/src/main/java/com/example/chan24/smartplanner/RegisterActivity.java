@@ -1,5 +1,8 @@
 package com.example.chan24.smartplanner;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +30,13 @@ public class RegisterActivity extends AppCompatActivity {
         EditText mail = (EditText)findViewById(R.id.mail);
 
         boolean res =db.insertdata(user.getText().toString(),pass.getText().toString(),mail.getText().toString());
-        if(res)
+        if(res) {
             Toast.makeText(this, "Inserted ", Toast.LENGTH_SHORT).show();
+            Intent i =new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(i);
+        }
+
+
     }
+
 }
