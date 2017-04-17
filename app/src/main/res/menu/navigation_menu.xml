@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/my_account"
+        android:title="My Account"
+        android:icon="@mipmap/ic_person_black_24dp"/>
+
+    <item android:id="@+id/my_location"
+        android:title="My Location"
+        android:icon="@mipmap/ic_place_black_24dp"/>
+
+
+    <item android:id="@+id/log_out"
+        android:title="Log Out"
+        android:icon="@mipmap/ic_exit_to_app_black_24dp"/>
+
+
+
+</menu>
