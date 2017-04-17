@@ -49,5 +49,6 @@
         android:layout_below="@+id/mail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:onClick="signup"
         android:id="@+id/signup" />
 </RelativeLayout>
