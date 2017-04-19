@@ -23,18 +23,20 @@ public class UserArea extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     NavigationView navigationView;
 
+    public String s ="";
+    //TextView v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
         if (googleServicesAvailable()){
-            Toast.makeText(this,"Perfect",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Perfect",Toast.LENGTH_SHORT).show();
         }
 
         Intent i =getIntent();
-        String s = i.getStringExtra("name");
-        TextView v =(TextView)findViewById(R.id.textView2);
-        v.setText("Welcome "+s);
+        s = i.getStringExtra("name");
+        // v =(TextView)findViewById(R.id.textView2);
+        //v.setText("Welcome "+s);
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_user_area);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -51,6 +53,7 @@ public class UserArea extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.my_profile :
                         Intent i =new Intent(getApplicationContext(),ProfileActivity.class);
+                        i.putExtra("Name",s);
                         startActivity(i);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -96,4 +99,6 @@ public class UserArea extends AppCompatActivity {
         }
         return false;
     }
+
+
 }

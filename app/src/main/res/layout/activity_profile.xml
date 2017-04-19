@@ -19,12 +19,12 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="136dp"
         android:layout_marginTop="21dp"
-        android:id="@+id/textView" />
+        android:id="@+id/uname" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/uname"
         android:layout_marginTop="48dp"
         android:id="@+id/userName"
         android:layout_alignParentStart="true" />

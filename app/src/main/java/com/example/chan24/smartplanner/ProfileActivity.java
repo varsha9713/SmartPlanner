@@ -9,15 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class ProfileActivity extends AppCompatActivity {
+    public String str="";
     DatabaseHelper2 db=new DatabaseHelper2(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Intent i =getIntent();
+        str=i.getStringExtra("Name");
+
+        TextView uname = (TextView)findViewById(R.id.userName);
+        uname.setText(str);
 
         Button cancel =(Button)findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
         EditText phone  = (EditText)findViewById(R.id.phone);
         RadioButton selectedRadioButton;
 
-
-
             int selectedId = gender.getCheckedRadioButtonId();
 
             selectedRadioButton = (RadioButton)findViewById(selectedId);
@@ -51,8 +57,10 @@ public class ProfileActivity extends AppCompatActivity {
         boolean res =db.insertdata(selectedRadioButton.getText().toString(),a,p);
         if(res) {
             //Toast.makeText(this, "Inserted ", Toast.LENGTH_SHORT).show();
-            Intent i =new Intent(getApplicationContext(),UserArea.class);
-            startActivity(i);
+            Intent i2 =new Intent(getApplicationContext(),UserArea.class);
+            //i2.putExtra("Name",str);
+            startActivity(i2);
+
         }
 
 
