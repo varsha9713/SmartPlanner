@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -29,6 +30,11 @@ public class UserArea extends AppCompatActivity {
         if (googleServicesAvailable()){
             Toast.makeText(this,"Perfect",Toast.LENGTH_SHORT).show();
         }
+
+        Intent i =getIntent();
+        String s = i.getStringExtra("name");
+        TextView v =(TextView)findViewById(R.id.textView2);
+        v.setText("Welcome "+s);
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_user_area);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);

@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 flag =0;
                                 Intent i =new Intent(getApplicationContext(),UserArea.class);
+                                i.putExtra("name",n);
                                 startActivity(i);
                             }
                         }

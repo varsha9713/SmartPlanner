@@ -13,6 +13,36 @@
     android:orientation="vertical">
 
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <CheckBox
+        android:id="@+id/shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shopping" />
+
+    <CheckBox
+        android:id="@+id/Movies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movies" />
+
+    <CheckBox
+        android:id="@+id/Dining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dining" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+
 </LinearLayout>
 
     <android.support.design.widget.NavigationView
