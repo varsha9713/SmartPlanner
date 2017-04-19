@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "477340074780",
+    "firebase_url": "https://smart-planner-7b229.firebaseio.com",
+    "project_id": "smart-planner-7b229",
+    "storage_bucket": "smart-planner-7b229.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477340074780:android:18ce7667b55938c5",
+        "android_client_info": {
+          "package_name": "com.example.chan24.smartplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477340074780-rrks8jemkjp2oc6ceaa9mcsniu2bmrb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chan24.smartplanner",
+            "certificate_hash": "f53f3fec6181f5d4a0f6d7b2393350dd41fb83cf"
+          }
+        },
+        {
+          "client_id": "477340074780-djd9ij8k9rg56jd7bol6919uasfqi7f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiHgVrSYVR46I7knNFRgObAOfTdxXn65g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477340074780-djd9ij8k9rg56jd7bol6919uasfqi7f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

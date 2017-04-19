@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     DatabaseHelper db =new DatabaseHelper(this);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
