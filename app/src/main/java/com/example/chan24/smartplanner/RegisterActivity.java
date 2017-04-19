@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         boolean res =db.insertdata(user.getText().toString(),pass.getText().toString(),mail.getText().toString());
         if(res) {
-            Toast.makeText(this, "Inserted ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Inserted ", Toast.LENGTH_SHORT).show();
             Intent i =new Intent(getApplicationContext(),LoginActivity.class);
             startActivity(i);
         }
