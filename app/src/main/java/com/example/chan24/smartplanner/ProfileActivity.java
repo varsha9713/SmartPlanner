@@ -1,7 +1,6 @@
 package com.example.chan24.smartplanner;
 
 import android.content.Intent;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,23 +8,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class ProfileActivity extends AppCompatActivity {
-    public String str="";
-    DatabaseHelper2 db=new DatabaseHelper2(this);
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Intent i =getIntent();
-        str=i.getStringExtra("Name");
-
-        TextView uname = (TextView)findViewById(R.id.userName);
-        uname.setText(str);
 
         Button cancel =(Button)findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -44,25 +42,18 @@ public class ProfileActivity extends AppCompatActivity {
         EditText phone  = (EditText)findViewById(R.id.phone);
         RadioButton selectedRadioButton;
 
-            int selectedId = gender.getCheckedRadioButtonId();
-
-            selectedRadioButton = (RadioButton)findViewById(selectedId);
-            //Toast.makeText(getApplicationContext(), selectedRadioButton.getText().toString()+" is selected", Toast.LENGTH_SHORT).show();
-
-
-
-
-        int a= Integer.parseInt(age.getText().toString());
-        int p = Integer.parseInt(phone.getText().toString());
-        boolean res =db.insertdata(selectedRadioButton.getText().toString(),a,p);
-        if(res) {
-            //Toast.makeText(this, "Inserted ", Toast.LENGTH_SHORT).show();
-            Intent i2 =new Intent(getApplicationContext(),UserArea.class);
-            //i2.putExtra("Name",str);
-            startActivity(i2);
-
-        }
+        int selectedId = gender.getCheckedRadioButtonId();
+        selectedRadioButton = (RadioButton)findViewById(selectedId);
+        String a= age.getText().toString();
+        String p=phone.getText().toString();
+        String g= selectedRadioButton.getText().toString();
 
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        user = firebaseAuth.getCurrentUser();
+
+        databaseReference.child("Profile").child(user.getUid()).child("Age").setValue(a);
+        databaseReference.child("Profile").child(user.getUid()).child("Gender").setValue(g);
+        databaseReference.child("Profile").child(user.getUid()).child("Phone").setValue(p);
     }
 }
