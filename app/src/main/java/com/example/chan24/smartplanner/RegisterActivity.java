@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Profile");
+        databaseReference= FirebaseDatabase.getInstance().getReference();
 
 
         final EditText user = (EditText)findViewById(R.id.user);

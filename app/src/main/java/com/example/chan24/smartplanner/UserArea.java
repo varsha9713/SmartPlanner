@@ -2,6 +2,7 @@ package com.example.chan24.smartplanner;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,8 +17,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserArea extends AppCompatActivity {
+
+
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -27,16 +37,13 @@ public class UserArea extends AppCompatActivity {
     //TextView v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_user_area);
         if (googleServicesAvailable()){
             //Toast.makeText(this,"Perfect",Toast.LENGTH_SHORT).show();
         }
-
-        Intent i =getIntent();
-        s = i.getStringExtra("name");
-        // v =(TextView)findViewById(R.id.textView2);
-        //v.setText("Welcome "+s);
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.activity_user_area);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -45,6 +52,26 @@ public class UserArea extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FirebaseAuth fa = FirebaseAuth.getInstance();
+        FirebaseUser fu = fa.getCurrentUser();
+        DatabaseReference dr =FirebaseDatabase.getInstance().getReference().child("Profile").child(fu.getUid()).child("Username");
+        dr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                s=dataSnapshot.getValue().toString();
+                //Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+                TextView t=(TextView)findViewById(R.id.textView2);
+                t.setText("Welcome "+s);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         navigationView = (NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
