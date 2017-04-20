@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void save(View view)
     {
-        EditText age = (EditText)findViewById(R.id.age);
+        /*EditText age = (EditText)findViewById(R.id.age);
         RadioGroup gender =(RadioGroup)findViewById(R.id.gender);
         EditText phone  = (EditText)findViewById(R.id.phone);
         RadioButton selectedRadioButton;
@@ -53,7 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         databaseReference.child("Profile").child(user.getUid()).child("Age").setValue(a);
-        databaseReference.child("Profile").child(user.getUid()).child("Gender").setValue(g);
-        databaseReference.child("Profile").child(user.getUid()).child("Phone").setValue(p);
+        DatabaseReference databaseReference2=FirebaseDatabase.getInstance().getReference().child("Profile").child(user.getUid()).child("Gender");
+        databaseReference2.setValue(g);
+        DatabaseReference databaseReference3=FirebaseDatabase.getInstance().getReference().child("Profile").child(user.getUid()).child("Phone");
+        databaseReference3.setValue(p);*/
     }
 }
