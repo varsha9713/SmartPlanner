@@ -38,13 +38,13 @@
         android:text="Shopping" />
 
     <CheckBox
-        android:id="@+id/Movies"
+        android:id="@+id/supermarket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movies" />
+        android:text="Supermarket" />
 
     <CheckBox
-        android:id="@+id/Dining"
+        android:id="@+id/dining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dining" />
@@ -57,14 +57,15 @@
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="30dp"
         />
+
     <EditText
+        android:id="@+id/distance"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:inputType="number"
         android:hint="Distance in km"
 
-        />
+        android:inputType="number" />
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"

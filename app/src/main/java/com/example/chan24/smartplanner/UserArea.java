@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +81,6 @@ public class UserArea extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.my_profile :
                         Intent i =new Intent(getApplicationContext(),ProfileActivity.class);
-                        i.putExtra("Name",s);
                         startActivity(i);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -99,6 +99,41 @@ public class UserArea extends AppCompatActivity {
                         break;
                 }
                 return false;
+            }
+        });
+
+        Button save =(Button)findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox sh =(CheckBox)findViewById(R.id.shopping);
+                CheckBox d =(CheckBox)findViewById(R.id.dining);
+                CheckBox s =(CheckBox)findViewById(R.id.supermarket);
+                TextView dist =(TextView)findViewById(R.id.distance);
+                String shopping="no";
+                String dining="no";
+                String supermarket="no";
+                String distance;
+
+                if(sh.isChecked()){
+                    shopping="yes";
+                }
+                if (d.isChecked()){
+                    dining="yes";
+                }
+                if (s.isChecked()){
+                    supermarket="yes";
+                }
+
+                distance=dist.getText().toString();
+
+                Intent i = new Intent(getApplicationContext(),MapsActivity.class);
+                i.putExtra("shopping",shopping);
+                i.putExtra("dining",dining);
+                i.putExtra("supermarket",supermarket);
+                i.putExtra("distance",distance);
+                startActivity(i);
+
             }
         });
     }

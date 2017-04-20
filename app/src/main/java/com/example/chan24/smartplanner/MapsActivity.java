@@ -28,12 +28,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import static com.example.chan24.smartplanner.AppConfig.*;
 
@@ -42,6 +45,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LocationManager locationManager;
     CoordinatorLayout mainCoordinateLayout;
+    String shopping;
+    String dining;
+    String supermarket;
+    int distance;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             showLocationSettings();
         }
+
+
+        Intent i = getIntent();
+        shopping =i.getStringExtra("shopping");
+        dining=i.getStringExtra("dining");
+        supermarket=i.getStringExtra("supermarket");
+        distance= Integer.parseInt(i.getStringExtra("distance"));
+
+
+        StringBuilder typeBuilder=new StringBuilder();
+        if (shopping.contentEquals("yes")) {
+            typeBuilder.append("shopping_mall");
+
+            if (dining.contentEquals("yes")){
+                typeBuilder.append("_or_restaurant");
+            }
+            if (supermarket.contentEquals("yes")){
+                typeBuilder.append("_or_department_store");
+            }
+        }
+
+        else{
+            if (dining.contentEquals("yes")){
+                typeBuilder.append("restaurant");
+                if (supermarket.contentEquals("yes")){
+                    typeBuilder.append("_or_department_store");
+                }
+            }
+            else {
+                if (supermarket.contentEquals("yes")){
+                    typeBuilder.append("department_store");
+                }
+            }
+        }
+        type=typeBuilder.toString();
+        //Toast.makeText(getApplicationContext(),type,Toast.LENGTH_LONG).show();
     }
 
     private void showLocationSettings() {
@@ -162,32 +206,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void loadNearByPlaces(double latitude, double longitude) {
-        String type = "restaurant";
-        StringBuilder googlePlacesUrl =
-                new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
-        googlePlacesUrl.append("&radius=").append(PROXIMITY_RADIUS);
-        googlePlacesUrl.append("&types=").append(type);
-        googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key=" + GOOGLE_BROWSER_API_KEY);
 
-        JsonObjectRequest request = new JsonObjectRequest(googlePlacesUrl.toString(),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject result) {
+            StringBuilder googlePlacesUrl =
+                    new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+            googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
+            googlePlacesUrl.append("&radius=").append(distance);
+            googlePlacesUrl.append("&types=").append(type);
+            googlePlacesUrl.append("&sensor=true");
+            googlePlacesUrl.append("&key=" + GOOGLE_BROWSER_API_KEY);
 
-                        Log.i(TAG, "onResponse: Result= " + result.toString());
-                        parseLocationResult(result);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override                    public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "onErrorResponse: Error= " + error);
-                        Log.e(TAG, "onErrorResponse: Error= " + error.getMessage());
-                    }
-                });
+            JsonObjectRequest request = new JsonObjectRequest(googlePlacesUrl.toString(),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject result) {
 
-        AppController.getInstance().addToRequestQueue(request);
+                            Log.i(TAG, "onResponse: Result= " + result.toString());
+                            parseLocationResult(result);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override                    public void onErrorResponse(VolleyError error) {
+                            Log.e(TAG, "onErrorResponse: Error= " + error);
+                            Log.e(TAG, "onErrorResponse: Error= " + error.getMessage());
+                        }
+                    });
+
+            AppController.getInstance().addToRequestQueue(request);
+
+
     }
 
     private void parseLocationResult(JSONObject result) {
@@ -219,16 +265,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     reference = place.getString(REFERENCE);
                     icon = place.getString(ICON);
 
+                   String t=place.getString("types");
+                    //Toast.makeText(getApplicationContext(),t,Toast.LENGTH_SHORT).show();
+
                     MarkerOptions markerOptions = new MarkerOptions();
                     LatLng latLng = new LatLng(latitude, longitude);
-                    markerOptions.position(latLng);
-                    markerOptions.title(placeName + " : " + vicinity);
+                    if (t.contains("restaurant") || t.contains("food")){
+                        markerOptions.position(latLng);
+                        markerOptions.title(placeName + " : " + vicinity);
+                        markerOptions.icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
 
-                    mMap.addMarker(markerOptions);
+                        mMap.addMarker(markerOptions);
+                    }
+                    else if (t.contains("department_store")){
+                        markerOptions.position(latLng);
+                        markerOptions.title(placeName + " : " + vicinity);
+                        markerOptions.icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+                        mMap.addMarker(markerOptions);
+                    }
+                    else {
+                        markerOptions.position(latLng);
+                        markerOptions.title(placeName + " : " + vicinity);
+                        markerOptions.icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        mMap.addMarker(markerOptions);
+                    }
+
+                    /*markerOptions.position(latLng);
+                    markerOptions.title(placeName + " : " + vicinity);
+                    markerOptions.icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                    mMap.addMarker(markerOptions);*/
                 }
 
-                Toast.makeText(getBaseContext(), jsonArray.length() + " Supermarkets found!",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), jsonArray.length() + " Supermarkets found!",Toast.LENGTH_LONG).show();
             } else if (result.getString(STATUS).equalsIgnoreCase(ZERO_RESULTS)) {
                 Toast.makeText(getBaseContext(), "No Supermarket found in 5KM radius!!!",
                         Toast.LENGTH_LONG).show();
