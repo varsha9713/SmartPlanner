@@ -49,12 +49,17 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Enter Name",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else if (p.isEmpty()){
+                if (p.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Enter Password",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                else if (m.isEmpty()){
+                if (p.length()<6){
+                    Toast.makeText(getApplicationContext(),"Password must have greater than 6 characters",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                 if (m.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Enter Password",Toast.LENGTH_SHORT).show();
                     return;
                 }
