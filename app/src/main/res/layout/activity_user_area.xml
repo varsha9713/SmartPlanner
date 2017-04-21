@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="135dp"
         android:layout_marginTop="70dp"
-        android:text="Save" />
+        android:text="Find places!" />
 
 
 </LinearLayout>

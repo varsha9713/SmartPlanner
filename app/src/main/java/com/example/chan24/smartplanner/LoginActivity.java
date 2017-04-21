@@ -1,6 +1,7 @@
 
 package com.example.chan24.smartplanner;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -46,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
                 String n=name.getText().toString();
                 String p =password.getText().toString();
 
+                progressDialog = new ProgressDialog(LoginActivity.this);
+
+
                 if (n.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Enter Name",Toast.LENGTH_SHORT).show();
                     return;
@@ -55,9 +60,17 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                progressDialog.setMessage("Authenticating...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+
+
                 firebaseAuth.getInstance().signInWithEmailAndPassword(n, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        progressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             finish();
                             startActivity(new Intent(getApplicationContext(), UserArea.class));
