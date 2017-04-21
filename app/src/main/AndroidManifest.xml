@@ -52,7 +52,10 @@
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".MapsActivityLocation"
+            android:label="@string/title_activity_maps_location"></activity>
     </application>
 
 </manifest>

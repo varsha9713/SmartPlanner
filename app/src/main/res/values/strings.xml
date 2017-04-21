@@ -3,4 +3,5 @@
     <string name="title_activity_maps">Map</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="title_activity_maps_location">Map</string>
 </resources>

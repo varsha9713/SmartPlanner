@@ -85,7 +85,7 @@ public class UserArea extends AppCompatActivity {
                         break;
 
                     case R.id.my_location :
-                        Intent i1 =new Intent(getApplicationContext(),MapsActivity.class);
+                        Intent i1 =new Intent(getApplicationContext(),MapsActivityLocation.class);
                         startActivity(i1);
                         mDrawerLayout.closeDrawers();
                         break;
