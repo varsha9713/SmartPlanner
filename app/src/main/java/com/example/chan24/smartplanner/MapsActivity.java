@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -49,7 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String dining;
     String supermarket;
     int distance;
-    String type;
+    double latitude;
+    double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,34 +78,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         supermarket=i.getStringExtra("supermarket");
         distance= Integer.parseInt(i.getStringExtra("distance"));
 
-
-        StringBuilder typeBuilder=new StringBuilder();
-        if (shopping.contentEquals("yes")) {
-            typeBuilder.append("shopping_mall");
-
-            if (dining.contentEquals("yes")){
-                typeBuilder.append("_or_restaurant");
-            }
-            if (supermarket.contentEquals("yes")){
-                typeBuilder.append("_or_department_store");
-            }
+        Button sh=(Button)findViewById(R.id.shopping);
+        if (shopping.contentEquals("yes")){
+            sh.setEnabled(true);
         }
-
         else{
-            if (dining.contentEquals("yes")){
-                typeBuilder.append("restaurant");
-                if (supermarket.contentEquals("yes")){
-                    typeBuilder.append("_or_department_store");
-                }
-            }
-            else {
-                if (supermarket.contentEquals("yes")){
-                    typeBuilder.append("department_store");
-                }
-            }
+            sh.setEnabled(false);
         }
-        type=typeBuilder.toString();
-        //Toast.makeText(getApplicationContext(),type,Toast.LENGTH_LONG).show();
+
+        Button s=(Button)findViewById(R.id.supermarket);
+        if (supermarket.contentEquals("yes")){
+            s.setEnabled(true);
+        }
+        else {
+            s.setEnabled(false);
+        }
+
+        Button d=(Button)findViewById(R.id.dining);
+        if (dining.contentEquals("yes")){
+            d.setEnabled(true);
+        }
+        else {
+            d.setEnabled(false);
+        }
+
+        sh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadNearByPlaces(latitude,longitude,"shopping_mall");
+            }
+        });
+
+        s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadNearByPlaces(latitude,longitude,"department_store");
+            }
+        });
+
+        d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadNearByPlaces(latitude,longitude,"restaurant");
+            }
+        });
+
+
+
+
+
     }
 
     private void showLocationSettings() {
@@ -178,16 +200,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
 
         LatLng latLng = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(latLng).title("My Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
-        loadNearByPlaces(latitude, longitude);
-        
     }
 
     @Override
@@ -205,7 +225,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void loadNearByPlaces(double latitude, double longitude) {
+    private void loadNearByPlaces(double latitude, double longitude, String type) {
 
             StringBuilder googlePlacesUrl =
                     new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
@@ -266,7 +286,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     icon = place.getString(ICON);
 
                    String t=place.getString("types");
-                    //Toast.makeText(getApplicationContext(),t,Toast.LENGTH_SHORT).show();
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     LatLng latLng = new LatLng(latitude, longitude);
@@ -292,16 +311,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.addMarker(markerOptions);
                     }
 
-                    /*markerOptions.position(latLng);
-                    markerOptions.title(placeName + " : " + vicinity);
-                    markerOptions.icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-                    mMap.addMarker(markerOptions);*/
                 }
 
-                Toast.makeText(getBaseContext(), jsonArray.length() + " Supermarkets found!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), jsonArray.length() + " places found!",Toast.LENGTH_LONG).show();
             } else if (result.getString(STATUS).equalsIgnoreCase(ZERO_RESULTS)) {
-                Toast.makeText(getBaseContext(), "No Supermarket found in 5KM radius!!!",
+                Toast.makeText(getBaseContext(), "No places found in "+distance+"m radius!!!",
                         Toast.LENGTH_LONG).show();
             }
 

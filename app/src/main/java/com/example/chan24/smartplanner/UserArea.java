@@ -61,7 +61,6 @@ public class UserArea extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 s=dataSnapshot.getValue().toString();
-                //Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
                 TextView t=(TextView)findViewById(R.id.textView2);
                 t.setText("Welcome "+s);
             }

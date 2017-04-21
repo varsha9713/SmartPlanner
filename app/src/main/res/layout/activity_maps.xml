@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainCoordinatorLayout"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".MapsActivity">
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/mainCoordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.chan24.smartplanner.MapsActivity" />
+        android:layout_height="500dp"
+        android:fitsSystemWindows="true"
+        tools:context=".MapsActivity">
 
-</android.support.design.widget.CoordinatorLayout>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            tools:context="com.example.chan24.smartplanner.MapsActivity" />
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainCoordinatorLayout">
+        <Button
+            android:id="@+id/shopping"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shopping"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/supermarket"
+           />
+
+        <Button
+            android:id="@+id/dining"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dining"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/shopping"
+            android:layout_marginStart="46dp"
+            />
+
+        <Button
+            android:id="@+id/supermarket"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supermarket"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
 
