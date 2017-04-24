@@ -8,7 +8,22 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/buildings2"
     tools:context="com.example.chan24.smartplanner.LoginActivity">
+
+    <ImageView
+        android:layout_width="29dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/mail"/>
+    <ImageView
+        android:layout_width="29dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/pass"/>
+
 
     <EditText
         android:id="@+id/email"
@@ -19,7 +34,10 @@
         android:layout_marginTop="59dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName" />
+        android:textColorHint="#000000"
+        android:textStyle="bold"
+        android:inputType="textEmailAddress"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -33,22 +51,30 @@
         android:hint="Password" />
 
     <Button
-        android:text="login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:background="#66CCCC"
+        android:id="@+id/login"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:id="@+id/login" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Not a member ? Register now!"
+        android:text="Not a registered user! Register now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="19dp"
         android:id="@+id/reg"
-        android:textStyle="normal|bold" />
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_below="@+id/login"
+        android:layout_alignStart="@+id/password" />
 
 </RelativeLayout>
+
+
+
+
