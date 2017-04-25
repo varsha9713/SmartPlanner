@@ -37,7 +37,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignEnd="@+id/supermarket"
             android:layout_weight="1"
-           />
+            android:background="#0000FF"
+            />
 
         <Button
             android:id="@+id/dining"
@@ -48,8 +49,8 @@
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/shopping"
             android:layout_marginStart="46dp"
-            android:layout_weight="1"
-            />
+            android:background="#FFA500"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/supermarket"
@@ -60,12 +61,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
-            />
+            android:background="#7FFF00"/>
 
     </LinearLayout>
-
-
-
 
 </RelativeLayout>
 

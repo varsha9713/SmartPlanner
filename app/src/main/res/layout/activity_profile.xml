@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/gradient1"
     tools:context="com.example.chan24.smartplanner.ProfileActivity">
 
     <TextView
@@ -18,16 +19,37 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="136dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="#66CCCC"
         android:layout_marginTop="21dp"
         android:id="@+id/uname" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/uname"
         android:layout_marginTop="48dp"
         android:id="@+id/userName"
+        android:layout_height="30dp"
+        android:textSize="25dp"
+        android:text=""
+        android:textColor="#000000"
+        android:layout_marginLeft="45dp"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/age"
+        android:layout_marginTop="166dp"
+        android:layout_marginLeft="8dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/username"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="8dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -36,18 +58,24 @@
         android:ems="10"
         android:id="@+id/age"
         android:hint="Age"
+        android:textColor="#000000"
         android:layout_below="@+id/userName"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="40dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
+        android:textStyle="bold"
         android:layout_below="@+id/gender"
+        android:textColor="#000000"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"
         android:id="@+id/phone"
         android:hint="Phone" />
 
@@ -57,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:id="@+id/cancel"
+        android:background="@drawable/rbut"
         android:layout_below="@+id/phone"
         android:layout_alignParentStart="true"
         android:layout_marginStart="44dp" />
@@ -69,6 +98,7 @@
         android:layout_below="@+id/age"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="17dp">
 
         <RadioButton
@@ -76,7 +106,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/male"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="40dp"/>
 
         <RadioButton
             android:text="Female"
@@ -86,15 +117,30 @@
             android:layout_weight="1" />
     </RadioGroup>
 
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/gender"
+        android:layout_marginTop="225dp"
+        android:layout_marginLeft="8dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/phone"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="8dp" />
+
     <Button
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/cancel"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/rbut"
         android:layout_marginEnd="50dp"
         android:onClick="save"
-
         android:id="@+id/save" />
 
 </RelativeLayout>

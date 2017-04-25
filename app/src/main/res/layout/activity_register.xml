@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/buildings2"
     tools:context="com.example.chan24.smartplanner.RegisterActivity">
 
     <EditText
@@ -17,10 +18,31 @@
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColorHint="#000000"
         android:layout_marginTop="48dp"
         android:id="@+id/user"
         android:hint="Username" />
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/username"
+        android:layout_marginTop="56dp"
+        android:layout_marginLeft="35dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/pass"
+        android:layout_marginTop="145dp"
+        android:layout_marginLeft="35dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/mail"
+        android:layout_marginTop="229dp"
+        android:layout_marginLeft="35dp" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +52,7 @@
         android:layout_alignEnd="@+id/user"
         android:layout_marginTop="46dp"
         android:id="@+id/pass"
+        android:textColorHint="#000000"
         android:hint="Password" />
 
     <EditText
@@ -40,15 +63,19 @@
         android:layout_centerVertical="true"
         android:layout_alignEnd="@+id/pass"
         android:id="@+id/mail"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="38dp"
+        android:textColorHint="#000000"
         android:hint="Email" />
 
     <Button
         android:text="sign up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="18dp"
         android:onClick="signup"
-        android:id="@+id/signup" />
+        android:id="@+id/signup"
+        android:background="#66cccc"
+        android:layout_below="@+id/mail"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
