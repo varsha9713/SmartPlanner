@@ -9,4 +9,4 @@ Support Repositories
 
 
 Installation Instructions:
-The librariesrequired for running the app are already included in the build.gradle(app module).Gradle sync before running the project will install all the support libraries needed.
+The libraries required for running the app are already included in the build.gradle(app module).Gradle sync before running the project will install all the support libraries needed.
